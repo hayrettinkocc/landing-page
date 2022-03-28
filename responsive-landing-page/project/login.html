@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="login.css">
+    <title>Login Firabese</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="wrapper">
+      <div class="title"><span>Login Form</span></div>
+        <div class="row">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" name="username" placeholder="username" />
+        </div>
+        <div class="row">
+          <i class="fas fa-at"></i>
+          <input type="text" id="email" name="email" placeholder="E-mail" />
+        </div>
+        <div class="row">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="Password" />
+        </div>
+        <div class="pass"><a href="#">Forgot password?</a></div>
+        <div class="row button">
+          <input type="submit" id='sighUp' name="signup_submit" value="Login">
+        </div>
+        <div class="signup-link">Not a member? <a href="#">Signup now</a></div>
+    </div>
+  </div>
+
+  
+</body>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+  import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCUnYtcnN1LGh_dHYcEWnG2iUjZ5oQDwPM",
+    authDomain: "login-form-firebase-6c75d.firebaseapp.com",
+    databaseURL: "https://login-form-firebase-6c75d-default-rtdb.firebaseio.com",
+    projectId: "login-form-firebase-6c75d",
+    storageBucket: "login-form-firebase-6c75d.appspot.com",
+    messagingSenderId: "30249557181",
+    appId: "1:30249557181:web:d2fb2018397bc42b302bd4"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const auth = getAuth();
+
+  sighUp.addEventListener('click',(e)=>{
+
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+
+    set(ref(database, 'users/' + user.uid),{
+      username: username,
+      email: email,
+      password: password
+
+    })
+
+    alert('user created!')
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage)
+
+    // ..
+  });
+
+  });
+
+
+</script>
+</html>

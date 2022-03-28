@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Montserrat:ital,wght@0,400;1,300&family=Poppins:ital,wght@0,300;0,900;1,200;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Responsive Landing Page</title>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>My Logo</h1>
+        <section class="menu">
+            <ul class="menu-list">
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+                <li>Products</li>
+                <li class="active"><a href="login.html">Login</a></li>
+            </ul>
+            <button>
+                <i class="fas fa-times"></i>
+                <i class="fas fa-bars"></i>
+            </button>
+        </section>
+
+    </header>
+    
+    <section class="main">
+        <section class="left">
+            <p class="title">Information Technology</p>
+            <p class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis possimus laborum eius,
+                hic aperiam esse, quo mollitia delectus dolore, laboriosam quam. Laborum et incidunt, facilis
+                nostrum sequi vero. Inventore, accusamus!</p>
+            <button class="cta"> <a href="buy.html"> Satın Al</button></a>
+        </section>
+        <section class="right">
+            <img src="./img/app11.png" alt="">
+        </section>
+    </section>
+
+
+    <script>
+        let menu = document.querySelector('.menu');
+        let menuBtn = document.querySelector('.menu button')
+        menuBtn.addEventListener('click',() =>{
+            menu.classList.toggle('opened')
+        })
+    </script>
+
+</body>
+</html>
